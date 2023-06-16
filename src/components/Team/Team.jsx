@@ -2,13 +2,12 @@ import Collaborator from '../Collaborator/Collaborator';
 import './Team.css';
 import hexToRgba from 'hex-to-rgba';
 
-const Team = ({ name, cor, colaboradores, toDelete, changeColor }) => {
-
+const Team = ({ id, name, cor, colaboradores, toDelete, changeColor }) => {
     return (
         (colaboradores.length > 0) ?
-            <section className='team' style={{ backgroundImage:'url(/imagens/fundo.png)', backgroundColor: hexToRgba(cor, '0.6') }}>
+            <section className='team' style={{ backgroundImage: 'url(/imagens/fundo.png)', backgroundColor: hexToRgba(cor, '0.6') }}>
                 <input
-                    onChange={e => changeColor(e.target.value, name)}
+                    onChange={e => changeColor(e.target.value, id)}
                     value={cor}
                     type='color'
                     className='input-color' />
@@ -16,13 +15,14 @@ const Team = ({ name, cor, colaboradores, toDelete, changeColor }) => {
                 <h3 style={{ borderColor: cor }}>{name}</h3>
 
                 <div className='colaboradores'>
-                    {colaboradores.map((c, i) => {
+                    {colaboradores.map(c => {
                         return <Collaborator
-                            backgroundColor={cor}
-                            key={c.nome + i}
-                            name={c.nome}
+                            id={c.id}
+                            name={c.name}
                             cargo={c.cargo}
                             image={c.image}
+                            backgroundColor={cor}
+                            key={c.id}
                             toDelete={toDelete} />
                     })}
                 </div>

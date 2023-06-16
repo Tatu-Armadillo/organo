@@ -9,7 +9,7 @@ const Form = ({ teams, adicionarColaborador }) => {
     const [nome, setNome] = useState('');
     const [cargo, setCargo] = useState('');
     const [image, setImage] = useState('');
-    const [time, setTime] = useState('');
+    const [team, setTeam] = useState('');
 
     const onSubmit = (event) => {
         event.preventDefault();
@@ -17,12 +17,12 @@ const Form = ({ teams, adicionarColaborador }) => {
             nome,
             cargo,
             image,
-            time
+            team
         })
         setNome('')
         setCargo('')
         setImage('')
-        setTime('')
+        setTeam('')
     }
 
     return (
@@ -33,8 +33,8 @@ const Form = ({ teams, adicionarColaborador }) => {
                 <TextField changed={value => setCargo(value)} value={cargo} label='Cargo' placeholder='Digite seu cargo' required={true} />
                 <TextField changed={value => setImage(value)} value={image} label='Imagem' placeholder='Digite o endereco da imagem' />
                 <Dropdown
-                    changed={value => setTime(value)}
-                    value={time}
+                    changed={value => setTeam(value)}
+                    value={team}
                     required={true}
                     label='Time'
                     itens={teams} />
