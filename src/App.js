@@ -6,45 +6,51 @@ import Baseboard from './components/Baseboard/Baseboard';
 
 function App() {
 
-  const teams = [
+  const [teams, setTeams] = useState([
     {
       name: 'Programação',
-      primaryColor: '#57C278',
-      secondaryColor: '#D9F7E9'
+      cor: '#57C278'
     },
     {
       name: 'Front-End',
-      primaryColor: '#82CFFA',
-      secondaryColor: '#E8F8FF'
+      cor: '#82CFFA'
     },
     {
       name: 'Data Science',
-      primaryColor: '#A6D157',
-      secondaryColor: '#F0F8E2'
+      cor: '#A6D157'
     },
     {
       name: 'Devops',
-      primaryColor: '#E06B69',
-      secondaryColor: '#FDE7E8'
+      cor: '#E06B69'
     },
     {
       name: 'UX e Design',
-      primaryColor: '#DB6EBF',
-      secondaryColor: '#FAE9F5'
+      cor: '#DB6EBF'
     },
     {
       name: 'Mobile',
-      primaryColor: '#FFBA05',
-      secondaryColor: '#FFF5D9'
+      cor: '#FFBA05'
     },
     {
       name: 'Inovação e Gestão',
-      primaryColor: '#FF8A29',
-      secondaryColor: '#FFEEDF'
+      cor: '#FF8A29'
     }
-  ]
+  ])
 
   const [colaboradores, setColaboradores] = useState([]);
+
+  function deletarColaborador() {
+
+  }
+
+  function changeColorTeam(cor, name) {
+    setTeams(teams.map(t => {
+      if (t.name === name) {
+        t.cor = cor;
+      }
+      return t;
+    }));
+  }
 
   function adicionarColaborador(colaborador) {
     setColaboradores([...colaboradores, colaborador])
@@ -59,9 +65,10 @@ function App() {
           return <Team
             key={t.name}
             name={t.name}
-            primaryColor={t.primaryColor}
-            secondaryColor={t.secondaryColor}
-            colaboradores={colaboradores.filter(c => c.time === t.name)} />
+            cor={t.cor}
+            colaboradores={colaboradores.filter(c => c.time === t.name)}
+            toDelete={deletarColaborador} 
+            changeColor={changeColorTeam}/>
         })
       }
       <Baseboard />
