@@ -4,12 +4,14 @@ import './Form.css'
 import Button from '../Button/Button';
 import { useState } from 'react';
 
-const Form = ({ teams, adicionarColaborador }) => {
+const Form = ({ teams, adicionarColaborador, cadastrarTime }) => {
 
     const [nome, setNome] = useState('');
     const [cargo, setCargo] = useState('');
     const [image, setImage] = useState('');
     const [team, setTeam] = useState('');
+    const [nomeTime, setNomeTime] = useState('');
+    const [corTime, setCorTime] = useState('');
 
     const onSubmit = (event) => {
         event.preventDefault();
@@ -39,6 +41,15 @@ const Form = ({ teams, adicionarColaborador }) => {
                     label='Time'
                     itens={teams} />
                 <Button>Criar Card</Button>
+            </form>
+            <form onSubmit={e => {
+                e.preventDefault();
+                cadastrarTime({ name: nomeTime, cor: corTime })
+            }}>
+                <h2>Preencha os dados para criar um novo time</h2>
+                <TextField changed={value => setNomeTime(value)} value={nomeTime} label='Nome Time' placeholder='Digite o nome do time' required={true} />
+                <TextField changed={value => setCorTime(value)} value={corTime} label='Cor time' placeholder='Digite a cor do time' required={true} />
+                <Button>Criar um novo time</Button>
             </form>
         </section>
     );

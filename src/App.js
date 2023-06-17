@@ -106,14 +106,20 @@ function App() {
   }
 
   function adicionarColaborador(colaborador) {
-    console.log(colaborador);
     setColaboradores([...colaboradores, colaborador])
+  }
+
+  function cadastrarTime(newTime) {
+    setTeams([...teams, { id: uuidv4(), ...newTime }])
   }
 
   return (
     <div className="App">
       <Banner />
-      <Form teams={teams.map(t => t.name)} adicionarColaborador={c => adicionarColaborador(c)} />
+      <Form
+        cadastrarTime={cadastrarTime}
+        teams={teams}
+        adicionarColaborador={c => adicionarColaborador(c)} />
       {
         teams.map(t => {
           return <Team

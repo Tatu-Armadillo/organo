@@ -22,7 +22,7 @@ const Team = ({ id, name, cor, colaboradores, toDelete, changeColor }) => {
                             cargo={c.cargo}
                             image={c.image}
                             backgroundColor={cor}
-                            key={c.id}
+                            key={c.id + c.name}
                             toDelete={toDelete} />
                     })}
                 </div>
