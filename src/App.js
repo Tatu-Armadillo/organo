@@ -51,43 +51,49 @@ function App() {
       name: 'Tatu-Armadillo ',
       cargo: 'Desenvolvedor de software',
       image: 'https://github.com/Tatu-Armadillo.png',
-      team: teams[0].name
+      team: teams[0].name,
+      favorite: false
     },
     {
       id: uuidv4(),
       name: 'JULIANA AMOASEI',
       cargo: 'Desenvolvedora de software',
       image: 'https://www.alura.com.br/assets/img/lideres/juliana-amoasei.1647533644.jpeg',
-      team: teams[0].name
+      team: teams[0].name,
+      favorite: false
     },
     {
       id: uuidv4(),
       name: 'Gabriel de Sousa Gomes Pedroso',
       cargo: 'Desenvolvedor',
       image: 'https://github.com/SousaPedroso.png',
-      team: teams[2].name
+      team: teams[2].name,
+      favorite: false
     },
     {
       id: uuidv4(),
       name: 'ARTHUR GOMES FELIX',
       cargo: 'Desenvolvedor',
       image: 'https://github.com/Goodnight64.png',
-      team: teams[0].name
+      team: teams[0].name,
+      favorite: false
     },
     {
       id: uuidv4(),
       name: 'Marcos Vinicius',
       cargo: 'Desenvolvedor',
       image: 'https://github.com/mCszao.png',
-      team: teams[1].name
+      team: teams[1].name,
+      favorite: false
     },
     {
       id: uuidv4(),
       name: 'João Ygor Ramalho',
       cargo: 'Desenvolvedor',
       image: 'https://github.com/joaoygorr.png',
-      team: teams[1].name
-    },
+      team: teams[1].name,
+      favorite: false
+    }
   ]
 
   const [colaboradores, setColaboradores] = useState(inicial);
@@ -113,6 +119,15 @@ function App() {
     setTeams([...teams, { id: uuidv4(), ...newTime }])
   }
 
+  function resolverFavorito(id) {
+    setColaboradores(colaboradores.map(c => {
+      if (c.id === id) {
+        c.favorite = !c.favorite;
+      }
+      return c;
+    }))
+  }
+
   return (
     <div className="App">
       <Banner />
@@ -128,8 +143,9 @@ function App() {
             name={t.name}
             cor={t.cor}
             colaboradores={colaboradores.filter(c => c.team === t.name)}
+            changeColor={changeColorTeam}
             toDelete={deletarColaborador}
-            changeColor={changeColorTeam} />
+            toFavotite={resolverFavorito} />
         })
       }
       <Baseboard />
